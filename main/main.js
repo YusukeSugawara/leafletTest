@@ -14,14 +14,6 @@ window.onload = function() {
     .addTo(mymap);
 
     callbackToNative("ready");
-
-    var latitude = FIRST_POSITION_COORD[0];
-    var longitude = FIRST_POSITION_COORD[1];
-    setInterval(function() {
-        updateMyPosition(latitude, longitude);
-
-        latitude += 0.00001;
-    }, 100);
 };
 
 function callbackToNative(eventName, parameters) {
@@ -68,7 +60,6 @@ function updateMyPosition(latitude, longitude) {
     if (myPositionMarker == null) {
         myPositionMarker = L
             .marker(coordinate)
-            .bindPopup("You're here!")
             .addTo(mymap);
     }
     else {
@@ -76,5 +67,5 @@ function updateMyPosition(latitude, longitude) {
             .setLatLng(coordinate);
     }
     
-    myPositionMarker.openPopup();
+    mymap.setView(coordinate);
 }
