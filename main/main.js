@@ -1,10 +1,5 @@
-var elementHello = null;
 
 window.onload = function() {
-    document.body.insertAdjacentHTML('afterbegin', '<div id="hello"></div>');
-
-    elementHello = document.getElementById('hello');
-
     callbackToNative("ready");
 };
 
@@ -46,12 +41,5 @@ function callbackToNative(eventName, parameters) {
 }
 
 function hello(timeMillis) {
-    if (elementHello == null) {
-        return;
-    }
-
-    var date = new Date(timeMillis);
-    elementHello.innerHTML = "hello: " + date.toISOString();
-
-    return elementHello.innerHTML;
+    return;
 }
