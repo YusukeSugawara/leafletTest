@@ -77,4 +77,4 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-files/
+__files__/
