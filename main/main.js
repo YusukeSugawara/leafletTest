@@ -1,4 +1,4 @@
-var mymap = null;
+var map = null;
 var FIRST_POSITION_COORD = [35.681167, 139.767052];
 var FIRST_POSITION_ZOOM = 11;
 
@@ -44,7 +44,7 @@ window.onload = function() {
     var tileLayers = createGSIMapTileLayers({
         '標準地図': 'std',
         '淡色地図': 'pale',
-        
+
         /* 
         404 Not found:
         'English': 'english',
@@ -60,13 +60,13 @@ window.onload = function() {
         */
     });
 
-    mymap = L.map('mapid', {
+    map = L.map('map', {
         center: FIRST_POSITION_COORD,
         zoom: FIRST_POSITION_ZOOM,
         layers: tileLayers.list
     });
 
-    L.control.layers(tileLayers.mapNameTilePairs).addTo(mymap);
+    L.control.layers(tileLayers.mapNameTilePairs).addTo(map);
 
     for (var i=0; i<BEACON_COORDINATES.length; i++) {
         var beaconCoordinate = BEACON_COORDINATES[i];
@@ -75,10 +75,10 @@ window.onload = function() {
             draggable: true,
             opacity: 0.5
         })
-        .addTo(mymap);
+        .addTo(map);
     }
 
-    mymap.fitBounds(BEACON_COORDINATES);
+    map.fitBounds(BEACON_COORDINATES);
 
     callbackToNative("ready");
 };
@@ -118,7 +118,7 @@ function callbackToNative(eventName, parameters) {
 }
 
 function updateMyPosition(latitude, longitude) {
-    if (mymap == null) {
+    if (map == null) {
         return;
     }
 
@@ -127,12 +127,12 @@ function updateMyPosition(latitude, longitude) {
     if (myPositionMarker == null) {
         myPositionMarker = L
             .marker(coordinate)
-            .addTo(mymap);
+            .addTo(map);
     }
     else {
         myPositionMarker
             .setLatLng(coordinate);
     }
     
-    mymap.setView(coordinate);
+    map.setView(coordinate);
 }

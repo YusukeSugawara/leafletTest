@@ -12,7 +12,7 @@ body {
     color: #eee;
 }
 
-html, body, #mapid { 
+html, body, #map { 
     height: 100%;
     width: 100vw;
 }
